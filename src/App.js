@@ -1,9 +1,10 @@
 import React from 'react';
+import { ArticleList } from './components/ArticleList';
 
 const App = () => {
   return (
     <div className="container">
-      <h1>ПРИВЕЕТ</h1>
+      <ArticleList />
     </div>
   );
 }
