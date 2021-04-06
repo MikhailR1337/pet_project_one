@@ -22,3 +22,7 @@ i {
 .dsblock {
   display: block;
 }
+
+.mb-1 {
+  margin-bottom: 1rem;
+}

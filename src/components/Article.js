@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
+import { CommentList } from './CommentList';
 
 export const Article = ({ article }) => {
     const [isOpen, setOpen] = useState(false);
 
-
+    // меняем состояение false/true
     const isOpenHandler = () => {
         setOpen(!isOpen)
     }
 
-    const toggleCollapsibleBody = isOpen ? "collapsible-body dsblock": "collapsible-body";
+    // Меняем классы в зависимости от isOpen
+    const toggleCollapsibleBody = isOpen ? "collapsible-body dsblock cyan lighten-5": "collapsible-body";
+    // Меняем текст Badge в зависимости от isOpen
     const toggleBadgeCaption = isOpen ? "Закрыть": "Читать далее...";
+    // Меняем icon в зависимости от isOpen
     const toggleIconImage = isOpen ? "unfold_less": "unfold_more";
 
     return (
-        <li key={article.id}>
-            <div className="collapsible-header cyan lighten-5" onClick={isOpenHandler}>
-                <i className="material-icons cyan-text">{toggleIconImage}</i>
+        <li>
+            <div className="collapsible-header cyan lighten-4" onClick={isOpenHandler}>
+                <i className="material-icons green-text text-accent-3">{toggleIconImage}</i>
                 {article.title}
                 <span className="new badge green" data-badge-caption={toggleBadgeCaption}></span>
             </div>
-            <div className={toggleCollapsibleBody}><p>{article.text}</p></div>
+            <div className={toggleCollapsibleBody}>
+                <p>{article.text}</p>
+                <CommentList comments={article.comments} /> 
+            </div>
         </li>
     )
 }
