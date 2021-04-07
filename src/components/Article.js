@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CommentList } from './CommentList';
 
-export const Article = ({ article }) => {
-    const [isOpen, setOpen] = useState(false);
-
-    // меняем состояение false/true
-    const isOpenHandler = () => {
-        setOpen(!isOpen)
-    }
+export const Article = ({ article, isOpen, isOpenHandler }) => {
 
     // Меняем классы в зависимости от isOpen
     const toggleCollapsibleBody = isOpen ? "collapsible-body dsblock cyan lighten-5": "collapsible-body";
