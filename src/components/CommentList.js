@@ -30,16 +30,30 @@ export const CommentList = ({ comments }) => {
     }
 
     // Получаем комментарии в зависимости от их наличия
-    const getComments = () => comments 
+    /* const getComments = () => comments 
     ? comments.map((comment) => <Comment comment={comment} key={comment.id} />)
-    : <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>;
+    : <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>; */
 
+
+    // Получаем комментарии в зависимости от их наличия, либо возвращаем блок, с текстом, об их отсутствии 
+    const getComments = () => {
+        if (comments) {
+            return (
+                <>
+                    {getButton()}
+                    <ul className="collection">
+                        {isOpenComment && comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
+                    </ul>
+                </>
+            )
+        }
+        return <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>;
+    }
+
+    // возвращаем итоговый результат!
     return (
         <>
-            {getButton()}
-            <ul className="collection">
-                {isOpenComment && getComments()}
-            </ul>
+            {getComments()}
         </>
     )
 }
