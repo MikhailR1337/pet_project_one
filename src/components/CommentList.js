@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Comment } from './Comment';
+import PropTypes from 'prop-types';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
@@ -53,4 +54,8 @@ export const CommentList = ({ comments = [] }) => {
             {getComments()}
         </>
     )
+}
+
+CommentList.propTypes = {
+    comments: PropTypes.array
 }

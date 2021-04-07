@@ -1,5 +1,6 @@
 import React from 'react';
 import { CommentList } from './CommentList';
+import PropTypes from 'prop-types';
 
 export const Article = ({ article, isOpen, isOpenHandler }) => {
 
@@ -24,3 +25,15 @@ export const Article = ({ article, isOpen, isOpenHandler }) => {
         </li>
     )
 }
+
+Article.propTypes = {
+    article: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        text: PropTypes.string,
+        comments: PropTypes.array
+    }).isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    isOpenHandler: PropTypes.func
+}.isRequired
