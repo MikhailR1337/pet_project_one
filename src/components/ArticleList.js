@@ -1,7 +1,7 @@
 import React from 'react';
 import { Article } from './Article';
 import { articles } from '../fixtures';
-import { AccordionDecorator } from '../decorators/Accordion'
+import { accordionDecorator } from '../decorators/accordion'
 
 const ArticleList = ({ isOpenId, isOpenHandler }) => {
 
@@ -18,4 +18,4 @@ const ArticleList = ({ isOpenId, isOpenHandler }) => {
     )
 }
 
-export default AccordionDecorator(ArticleList);
+export default accordionDecorator(ArticleList);

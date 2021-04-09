@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // экспортируем декоратор, который принимает компонент, а возвращает класс-обертку с новым функционалом
-export const AccordionDecorator = (OriginalComponent) => class Accordion extends Component {
+export const accordionDecorator = (OriginalComponent) => class Accordion extends Component {
     // Задаем state без конструктора 
     state = {
         isOpenId: null,
