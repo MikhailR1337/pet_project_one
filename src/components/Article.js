@@ -16,9 +16,9 @@ export class Article extends Component {
     }.isRequired
 
     // некоторая оптимизация => больше не перерисовывем все Article при открытии/закрытии
-/*     shouldComponentUpdate(nextProps, _nextState) {
-        return nextProps.isOpen !== this.props.isOpen;
-    } */
+    // shouldComponentUpdate(nextProps, _nextState) {
+    //     return nextProps.isOpen !== this.props.isOpen;
+    // } 
 
     render() {
         const { article, isOpen, isOpenHandler } = this.props;

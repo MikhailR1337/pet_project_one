@@ -10,18 +10,23 @@ export class FormCommentAdd extends Component {
         }
     }
 
+    // Универсальный метод для value всех инпутов
     textHandle = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         })
     }
 
+    // отключаем перезагрузку при нажатии на кнопку
     submitComment = (event) => {
         event.preventDefault();
     }
 
     render() {
         const { userNameText, commentText } = this.state;
+        const { userNameRange, commentTextRange } = validateRange
+        
+        // прописываем классы с помощью библиотеки classnames
         const userNameLabel = cn({
             "active": userNameText,
         });
@@ -29,12 +34,12 @@ export class FormCommentAdd extends Component {
             "active": commentText,
         });
         const userNameInput = cn("validate", {
-            "valid": userNameText.length > 0,
-            "invalid": userNameText.length >= 15
+            "valid": userNameText.length >= userNameRange.min,
+            "invalid": userNameText.length >= userNameRange.max
         });
         const commentTextInput = cn("materialize-textarea",{
-            "valid": commentText.length >= 5,
-            "invalid": commentText.length >= 30
+            "valid": commentText.length >= commentTextRange.min,
+            "invalid": commentText.length >= commentTextRange.max
         });
 
         return (
@@ -42,7 +47,7 @@ export class FormCommentAdd extends Component {
                 <form className="col s12 amber lighten-5" onSubmit={this.submitComment}>
                     <div className="row">
                         <div className="input-field col s4">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i className="material-icons prefix">account_circle</i>
                             <input id="userName"
                             name="userNameText"
                             type="text"
@@ -52,7 +57,7 @@ export class FormCommentAdd extends Component {
                             <label htmlFor="userName" className={userNameLabel}>Введите имя</label>
                         </div>
                         <div className="input-field col s5">
-                            <i class="material-icons prefix">comment</i>
+                            <i className="material-icons prefix">comment</i>
                             <textarea id="comment"
                             name="commentText"
                             className={commentTextInput}
@@ -61,13 +66,25 @@ export class FormCommentAdd extends Component {
                             <label htmlFor="comment" className={commentTextLabel}>Введите комментарий</label>
                         </div>
                         <div className="input-field col s3 center-align">
-                            <button class="btn waves-effect waves-light mt-1" type="submit" name="action">добавить
-                                <i class="material-icons right">send</i>
+                            <button className="btn waves-effect waves-light mt-1" type="submit" name="action">добавить
+                                <i className="material-icons right">send</i>
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         )
+    }
+}
+
+// Диапазон для количества символов в инпутах
+const validateRange = {
+    userNameRange: {
+        min: 1,
+        max: 15
+    },
+    commentTextRange: {
+        min: 5,
+        max: 30
     }
 }
