@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleList from './components/ArticleList';
+import { FormCommentAdd } from './components/FormCommentAdd';
 
 const App = () => {
   return (

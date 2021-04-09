@@ -16,14 +16,13 @@ export class Article extends Component {
     }.isRequired
 
     // некоторая оптимизация => больше не перерисовывем все Article при открытии/закрытии
-    shouldComponentUpdate(nextProps, nextState) {
+/*     shouldComponentUpdate(nextProps, _nextState) {
         return nextProps.isOpen !== this.props.isOpen;
-    }
+    } */
 
     render() {
         const { article, isOpen, isOpenHandler } = this.props;
-        console.log('Мы родились!')
-        // Меняем классы в зависимости от isOpen
+        // Меняем классы в зависимости от isOpen (Класс dsblock отвечает за открытие/закрытие)
         this.toggleCollapsibleBody = isOpen ? "collapsible-body dsblock cyan lighten-5": "collapsible-body";
         // Меняем текст Badge в зависимости от isOpen
         this.toggleBadgeCaption = isOpen ? "Закрыть": "Читать далее...";

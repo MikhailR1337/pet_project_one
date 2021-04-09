@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Comment } from './Comment';
 import PropTypes from 'prop-types';
+import { FormCommentAdd } from './FormCommentAdd';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
@@ -37,10 +38,16 @@ export const CommentList = ({ comments = [] }) => {
                     <ul className="collection">
                         {isOpenComment && comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
                     </ul>
+                    {isOpenComment && <FormCommentAdd />}
                 </>
             )
         }
-        return <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>;
+        return (
+            <>
+                <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>
+                <FormCommentAdd />
+            </>
+        );
     }
 
     // возвращаем итоговый результат!
