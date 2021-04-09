@@ -1,7 +1,7 @@
 import React from 'react';
 import { Article } from './Article';
 import { articles } from '../fixtures';
-import { AccordionDecorator } from '../decorators/accordion'
+import { AccordionDecorator } from '../decorators/Accordion'
 
 const ArticleList = ({ isOpenId, isOpenHandler }) => {
 
