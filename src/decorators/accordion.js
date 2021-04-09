@@ -10,7 +10,7 @@ export const accordionDecorator = (OriginalComponent) => class Accordion extends
     render() {
         const { isOpenId } = this.state;
         return (
-            <OriginalComponent isOpenId={isOpenId} isOpenHandler={this.isOpenHandler} />
+            <OriginalComponent {...this.props} isOpenId={isOpenId} isOpenHandler={this.isOpenHandler} />
         );
     }
     
