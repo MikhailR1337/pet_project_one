@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cn from 'classnames';
 
 export class FormCommentAdd extends Component {
     constructor(props) {
@@ -21,8 +22,21 @@ export class FormCommentAdd extends Component {
 
     render() {
         const { userNameText, commentText } = this.state;
-        this.toggleActiveLabelUser = userNameText ? "active": "";
-        this.toggleActiveLabelComment = commentText ? "active": "";
+        const userNameLabel = cn({
+            "active": userNameText,
+        });
+        const commentTextLabel = cn({
+            "active": commentText,
+        });
+        const userNameInput = cn("validate", {
+            "valid": userNameText.length > 0,
+            "invalid": userNameText.length >= 15
+        });
+        const commentTextInput = cn("materialize-textarea",{
+            "valid": commentText.length >= 5,
+            "invalid": commentText.length >= 30
+        });
+
         return (
             <div className="row mt-1">
                 <form className="col s12 amber lighten-5" onSubmit={this.submitComment}>
@@ -32,19 +46,19 @@ export class FormCommentAdd extends Component {
                             <input id="userName"
                             name="userNameText"
                             type="text"
-                            className="validate"
+                            className={userNameInput}
                             value={userNameText}
                             onChange={this.textHandle} />
-                            <label htmlFor="userName" className={this.toggleActiveLabelUser}>Введите имя</label>
+                            <label htmlFor="userName" className={userNameLabel}>Введите имя</label>
                         </div>
                         <div className="input-field col s5">
                             <i class="material-icons prefix">comment</i>
                             <textarea id="comment"
                             name="commentText"
-                            className="materialize-textarea"
+                            className={commentTextInput}
                             value={commentText}
                             onChange={this.textHandle} />
-                            <label htmlFor="comment" className={this.toggleActiveLabelComment}>Введите комментарий</label>
+                            <label htmlFor="comment" className={commentTextLabel}>Введите комментарий</label>
                         </div>
                         <div className="input-field col s3 center-align">
                             <button class="btn waves-effect waves-light mt-1" type="submit" name="action">добавить
