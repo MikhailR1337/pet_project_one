@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Article } from './Article';
 import { articles } from '../fixtures';
+import { AccordionDecorator } from '../decorators/accordion'
 
-export const ArticleList = () => {
-    const [isOpenId, setOpenId] = useState(null);
+const ArticleList = ({ isOpenId, isOpenHandler }) => {
 
-    const isOpenHandler = (id) => () => {
-        if (id === isOpenId) {
-            setOpenId(null);
-        } else {
-            setOpenId(id);
-        }
-        
-    }
     return (
         <ul className="collapsible">
             {articles.map(article => <Article
@@ -25,3 +17,5 @@ export const ArticleList = () => {
         
     )
 }
+
+export default AccordionDecorator(ArticleList);

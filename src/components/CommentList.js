@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 export const CommentList = ({ comments = [] }) => {
-    // Задаем state через хук
+    // Задаем state через хук useState
     const [isOpenComment, setOpenComment] = useState(false);
 
     // Меняем состояние true/false
@@ -27,11 +27,6 @@ export const CommentList = ({ comments = [] }) => {
             </a>
         )
     }
-
-    // Получаем комментарии в зависимости от их наличия
-    /* const getComments = () => comments 
-    ? comments.map((comment) => <Comment comment={comment} key={comment.id} />)
-    : <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>; */
 
     // Получаем комментарии в зависимости от их наличия, либо возвращаем блок, с текстом, об их отсутствии 
     const getComments = () => {
