@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CommentList } from './CommentList';
 import PropTypes from 'prop-types';
+import { FormCommentAdd } from './forms/FormCommentAdd';
 
 export class Article extends Component {
     static propTypes = {
@@ -38,7 +39,8 @@ export class Article extends Component {
                 </div>
                 <div className={this.toggleCollapsibleBody}>
                     <p>{article.text}</p>
-                    <CommentList isOpen={isOpen} comments={article.comments} /> 
+                    <CommentList isOpen={isOpen} comments={article.comments} />
+                    {isOpen && <FormCommentAdd />}
                 </div>
             </li>
         );

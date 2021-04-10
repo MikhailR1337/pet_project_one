@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Comment } from './Comment';
 import PropTypes from 'prop-types';
-import { FormCommentAdd } from './forms/FormCommentAdd';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-export const CommentList = ({ comments = [], isOpen }) => {
+export const CommentList = ({ comments = [] }) => {
     // Задаем state через хук useState
     const [isOpenComment, setOpenComment] = useState(false);
 
@@ -13,11 +12,6 @@ export const CommentList = ({ comments = [], isOpen }) => {
     const OpenCommentHandler = () => {
         setOpenComment(!isOpenComment)
     }
-
-    // С помощью useEffect следим за isOpen и меняем isOpenComment
-    useEffect(() => {
-        if (!isOpen) setOpenComment(false);
-    }, [isOpen])
 
     // Меняем icon в зависимости от isOpenComment
     const toggleIconImage = isOpenComment ? "speaker_notes_off": "speaker_notes";
@@ -43,14 +37,12 @@ export const CommentList = ({ comments = [], isOpen }) => {
                     <ul className="collection">
                         {isOpenComment && comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
                     </ul>
-                    {isOpen && <FormCommentAdd />}
                 </>
             )
         }
         return (
             <>
                 <div className="card-panel teal deep-purple lighten-3">Комментариев пока нет</div>
-                {isOpen && <FormCommentAdd />}
             </>
         );
     }
