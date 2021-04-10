@@ -32,13 +32,13 @@ export class Article extends Component {
         return (
             <li>
                 <div className="collapsible-header cyan lighten-4" onClick={isOpenHandler}>
-                    <i className="material-icons green-text text-accent-3">{this.toggleIconImage}</i>
+                    <i className="material-icons green-text text-darken-4">{this.toggleIconImage}</i>
                     {article.title}
                     <span className="new badge green" data-badge-caption={this.toggleBadgeCaption}></span>
                 </div>
                 <div className={this.toggleCollapsibleBody}>
                     <p>{article.text}</p>
-                    <CommentList comments={article.comments} /> 
+                    <CommentList isOpen={isOpen} comments={article.comments} /> 
                 </div>
             </li>
         );

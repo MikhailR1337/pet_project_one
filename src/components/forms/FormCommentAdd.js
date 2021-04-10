@@ -12,6 +12,7 @@ export class FormCommentAdd extends Component {
 
     // Универсальный метод для value всех инпутов
     textHandle = (event) => {
+        console.log('салам')
         this.setState({
             [event.target.name]: event.target.value,
         })
@@ -20,6 +21,10 @@ export class FormCommentAdd extends Component {
     // отключаем перезагрузку при нажатии на кнопку
     submitComment = (event) => {
         event.preventDefault();
+        this.setState({
+            userNameText: '',
+            commentText: ''
+        })
     }
 
     render() {

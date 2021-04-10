@@ -28,7 +28,7 @@ export class Filter extends Component {
             <ul className="collapsible">
                 <li>
                     <div className="collapsible-header cyan lighten-4" onClick={this.isOpenHandler}>
-                        <i className="material-icons green-text text-accent-3">{this.toggleIconImage}</i>
+                        <i className="material-icons green-text text-darken-4">{this.toggleIconImage}</i>
                         Фильтры
                         <span className="new badge green" data-badge-caption={this.toggleBadgeCaption}></span>
                     </div>
