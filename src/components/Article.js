@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CommentList } from './CommentList';
 import PropTypes from 'prop-types';
 import { FormCommentAdd } from './forms/FormCommentAdd';
+import { CSSTransition } from 'react-transition-group';
 
 export class Article extends Component {
     static propTypes = {
@@ -31,6 +32,7 @@ export class Article extends Component {
         this.toggleIconImage = isOpen ? "unfold_less": "unfold_more";
 
         return (
+            <CSSTransition in={isOpen} timeout={200} classNames="article">
             <li>
                 <div className="collapsible-header cyan lighten-4" onClick={isOpenHandler}>
                     <i className="material-icons green-text text-darken-4">{this.toggleIconImage}</i>
@@ -43,6 +45,7 @@ export class Article extends Component {
                     {isOpen && <FormCommentAdd />}
                 </div>
             </li>
+            </CSSTransition>
         );
     }
 };

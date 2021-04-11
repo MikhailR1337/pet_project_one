@@ -1,6 +1,7 @@
 import React from 'react';
 import { Article } from './Article';
-import { accordionDecorator } from '../decorators/accordion'
+import { accordionDecorator } from '../decorators/accordion';
+
 
 const ArticleList = ({ isOpenId, isOpenHandler, articles }) => {
 
@@ -13,7 +14,6 @@ const ArticleList = ({ isOpenId, isOpenHandler, articles }) => {
                 isOpen={article.id === isOpenId}
                 />)} 
         </ul>
-        
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Comment } from './Comment';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
@@ -34,9 +35,11 @@ export const CommentList = ({ comments = [] }) => {
             return (
                 <>
                     {getButton()}
+                    <CSSTransition in={isOpenComment} timeout={500} classNames="comment">
                     <ul className="collection">
                         {isOpenComment && comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
                     </ul>
+                    </CSSTransition>
                 </>
             )
         }

@@ -21,13 +21,13 @@ code {
   transition: opacity 500ms ease-in;
 }
 
-.article-leave {
-  opacity: 1;
+.comment-enter {
+  opacity: 0.01;
 }
 
-.article-leave.article-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.comment-enter.comment-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
 }
 
 i {
