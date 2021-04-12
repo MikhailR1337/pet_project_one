@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Comment } from './Comment';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-export const CommentList = ({ comments = [] }) => {
+export const CommentList = ({ comments = [], isOpen }) => {
     // Задаем state через хук useState
     const [isOpenComment, setOpenComment] = useState(false);
 
     // Меняем состояние true/false
     const OpenCommentHandler = () => {
-        setOpenComment(!isOpenComment)
+        setOpenComment(!isOpenComment);
     }
+
+    // Закрываем комментарии, если статья закрыта с помощью хука useEffect
+    useEffect(() => {
+        if (!isOpen) {
+            setOpenComment(false);
+        };
+    }, [isOpen])
 
     // Меняем icon в зависимости от isOpenComment
     const toggleIconImage = isOpenComment ? "speaker_notes_off": "speaker_notes";
@@ -59,5 +66,6 @@ export const CommentList = ({ comments = [] }) => {
 }
 
 CommentList.propTypes = {
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    isOpen: PropTypes.bool
 }

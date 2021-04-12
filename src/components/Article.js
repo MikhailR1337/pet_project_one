@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { CommentList } from './CommentList';
 import PropTypes from 'prop-types';
 import { FormCommentAdd } from './forms/FormCommentAdd';
 import { CSSTransition } from 'react-transition-group';
+import { deleteArticle } from '../redux/actionCreaters/actionCreaters';
 
-export class Article extends Component {
+class Article extends Component {
     static propTypes = {
+        // from ArticleList
         article: PropTypes.shape({
             id: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
@@ -14,13 +17,20 @@ export class Article extends Component {
             comments: PropTypes.array
         }).isRequired,
         isOpen: PropTypes.bool.isRequired,
-        isOpenHandler: PropTypes.func
+        isOpenHandler: PropTypes.func,
+        // from Redux
+        deleteArticle: PropTypes.func
     }.isRequired
 
     // некоторая оптимизация => больше не перерисовывем все Article при открытии/закрытии
     // shouldComponentUpdate(nextProps, _nextState) {
     //     return nextProps.isOpen !== this.props.isOpen;
-    // } 
+    // }
+
+    deleteHandler = () => {
+        const { article, deleteArticle } = this.props;
+        deleteArticle(article.id);
+    }
 
     render() {
         const { article, isOpen, isOpenHandler } = this.props;
@@ -43,9 +53,14 @@ export class Article extends Component {
                         <p>{article.text}</p>
                         <CommentList isOpen={isOpen} comments={article.comments} />
                         {isOpen && <FormCommentAdd />}
+                        <div className="right-align">
+                            <i className="material-icons medium red-text" onClick={this.deleteHandler}>delete</i>
+                        </div>
                     </div>
                 </CSSTransition>
             </li>
         );
     }
 };
+
+export default connect(null, { deleteArticle })(Article);
