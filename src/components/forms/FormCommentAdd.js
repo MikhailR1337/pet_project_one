@@ -12,7 +12,6 @@ export class FormCommentAdd extends Component {
 
     // Универсальный метод для value всех инпутов
     textHandle = (event) => {
-        console.log('салам')
         this.setState({
             [event.target.name]: event.target.value,
         })

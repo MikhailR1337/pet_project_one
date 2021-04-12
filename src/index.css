@@ -30,6 +30,15 @@ code {
   transition: opacity 500ms ease-in;
 }
 
+.filter-enter {
+  opacity: 0.01;
+}
+
+.filter-enter.filter-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
 i {
   cursor: pointer;
 }

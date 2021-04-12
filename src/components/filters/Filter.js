@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { SelectFilter } from './selectFilter/SelectFilter';
 import { DayPickerFilter } from './dayPickerFilter/DayPickerFilter';
+import { CSSTransition } from 'react-transition-group';
 
 export class Filter extends Component {
 
@@ -33,14 +34,16 @@ export class Filter extends Component {
                         <span className="new badge green" data-badge-caption={this.toggleBadgeCaption}></span>
                     </div>
                     <div className={this.toggleCollapsibleBody}>
-                        <div className="row">
-                            <div className="col s4">
-                                <DayPickerFilter />
+                        <CSSTransition in={isOpen} timeout={500} classNames="filter">
+                            <div className="row">
+                                <div className="col s4">
+                                    <DayPickerFilter />
+                                </div>
+                                <div className="col s8">
+                                    <SelectFilter articles={articles} />
+                                </div>
                             </div>
-                            <div className="col s8">
-                                <SelectFilter articles={articles} />
-                            </div>
-                        </div>
+                        </CSSTransition>
                     </div>
                 </li>
             </ul>
