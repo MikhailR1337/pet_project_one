@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectFilter } from './selectFilter/SelectFilter';
+import SelectFilter from './selectFilter/SelectFilter';
 import { DayPickerFilter } from './dayPickerFilter/DayPickerFilter';
 import { CSSTransition } from 'react-transition-group';
 
@@ -18,7 +18,6 @@ export class Filter extends Component {
 
     render() {
         const { isOpen } = this.state;
-        const { articles } = this.props;
         // Меняем классы в зависимости от isOpen (Класс dsblock отвечает за открытие/закрытие)
         this.toggleCollapsibleBody = isOpen ? "collapsible-body dsblock cyan lighten-5": "collapsible-body";
         // Меняем текст Badge в зависимости от isOpen
@@ -40,7 +39,7 @@ export class Filter extends Component {
                                     <DayPickerFilter />
                                 </div>
                                 <div className="col s8">
-                                    <SelectFilter articles={articles} />
+                                    <SelectFilter />
                                 </div>
                             </div>
                         </CSSTransition>

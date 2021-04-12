@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated()
-export class SelectFilter extends Component {
+class SelectFilter extends Component {
     render() {
         const { articles } = this.props;
         const options = articles.map(article => ({
@@ -22,3 +23,9 @@ export class SelectFilter extends Component {
         );
     }
 };
+
+const mapStateToProps = (state) => ({
+    articles: state.articles,
+});
+
+export default connect(mapStateToProps)(SelectFilter);

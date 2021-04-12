@@ -1,13 +1,16 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ArticleList from './components/ArticleList';
 import { Filter } from './components/filters/Filter';
-
-const App = ({ articles }) => {
+import { store } from './redux/store/store';
+const App = () => {
   return (
-    <div className="container">
-      <Filter articles={articles} />
-      <ArticleList articles={articles} />
-    </div>
+    <Provider store={store}>
+      <div className="container">
+        <Filter />
+        <ArticleList />
+      </div>
+    </Provider>
   );
 }
 

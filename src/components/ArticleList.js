@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Article } from './Article';
 import { accordionDecorator } from '../decorators/accordion';
 
@@ -17,4 +18,8 @@ const ArticleList = ({ isOpenId, isOpenHandler, articles }) => {
     )
 }
 
-export default accordionDecorator(ArticleList);
+const mapStateToProps = (state) => ({
+    articles: state.articles,
+});
+
+export default connect(mapStateToProps)(accordionDecorator(ArticleList));
