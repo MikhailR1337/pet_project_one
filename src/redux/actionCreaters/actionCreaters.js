@@ -7,10 +7,10 @@ export const deleteArticle = (id) => {
     };
 }
 
-export const selectChanged = (selectedId) => {
+export const selectChanged = (selected) => {
     return { 
         type: SELECT_CHANGED, 
-        payload: { selectedId } 
+        payload: { selected } 
     };
 }
 
