@@ -1,40 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { styleForHelmet } from './styleForHelmet';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import 'moment/locale/ru';
+import { daypickerChanged } from '../../../redux/actionCreaters/actionCreaters';
 
-export class DayPickerFilter extends React.Component {
+class DayPickerFilter extends React.Component {
   static defaultProps = {
     numberOfMonths: 1,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
-      from: undefined,
-      to: undefined,
-    };
-  }
-
   handleDayClick = (day) => {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
+    const { daypickerChanged, dateRange } = this.props;
+    const range = DateUtils.addDayToRange(day, dateRange);
+    daypickerChanged(range);
   }
 
   handleResetClick = (event) => {
     event.preventDefault();
-    this.setState(this.getInitialState());
+    const { daypickerChanged } = this.props;
+    daypickerChanged({from: undefined, to: undefined});
   }
 
   render() {
-    const { from, to } = this.state;
+    const { from, to } = this.props.dateRange;
     const modifiers = { start: from, end: to };
     return (
       <div className="RangeExample">
@@ -67,4 +59,10 @@ export class DayPickerFilter extends React.Component {
       </div>
     );
   }
-}
+};
+
+const mapStateToProps = (state) => ({
+  dateRange: state.filters.dateRange
+})
+
+export default connect(mapStateToProps, { daypickerChanged })(DayPickerFilter);

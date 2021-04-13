@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SelectFilter from './selectFilter/SelectFilter';
-import { DayPickerFilter } from './dayPickerFilter/DayPickerFilter';
+import DayPickerFilter from './dayPickerFilter/DayPickerFilter';
 import { CSSTransition } from 'react-transition-group';
 
 export class Filter extends Component {

@@ -6,7 +6,6 @@ export const articleReducer = (state = initialState, action) => {
     switch (type) {
         case DELETE_ARTICLE: 
             return state.filter(article => article.id !== payload.id);
-
     default: return state;
     }
 }
