@@ -31,8 +31,37 @@ ArticleList.propTypes = {
     isOpenHandler: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
+
+
+// Фильтруем статьи до их рендера (работает, но есть над чем подумать)
+export default connect(({ articles, filters }) => {
+    const { selected, dateRange: { from, to } } = filters;
+    const filteredArticles = articles.filter(article => {
+        const published = Date.parse(article.date);
+        return (!selected.length || selected.filter(elem => elem.value === article.id).length === 1) &&
+            (!from || !to || (published > from && published < to))
+    })
+    return {
+        articles: filteredArticles
+    }
+
+})(accordionDecorator(ArticleList));
+
+// Вариант через фильтрации mapStateToProps. По синтаксису что-то не пошло, надо думать.
+
+/* const mapStateToProps = (state) => ({
     articles: state.articles,
+    filters: state.filters
 });
 
-export default connect(mapStateToProps)(accordionDecorator(ArticleList));
+export default connect(mapStateToProps => {
+    const { selected, dateRange: { from, to } } = mapStateToProps.filters;
+    const filteredArticles = mapStateToProps.articles.filter(article => {
+        const published = Date.parse(article.date);
+        return (!selected.length || selected.filter(elem => elem.value === article.id).length === 1) &&
+            (!from || !to || (published > from && published < to))
+    })
+    return {
+        articles: filteredArticles
+    }
+})(accordionDecorator(ArticleList)); */
