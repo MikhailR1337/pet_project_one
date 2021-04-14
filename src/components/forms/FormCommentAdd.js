@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import cn from 'classnames';
+import { addComment } from '../../redux/actionCreaters/actionCreaters';
 
-export class FormCommentAdd extends Component {
+class FormCommentAdd extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,6 +22,9 @@ export class FormCommentAdd extends Component {
     // отключаем перезагрузку при нажатии на кнопку
     submitComment = (event) => {
         event.preventDefault();
+        const { addComment, articleId } = this.props;
+        const { userNameText, commentText } = this.state;
+        addComment({user: userNameText, text: commentText } , articleId);
         this.setState({
             userNameText: '',
             commentText: ''
@@ -28,7 +33,7 @@ export class FormCommentAdd extends Component {
 
     render() {
         const { userNameText, commentText } = this.state;
-        const { userNameRange, commentTextRange } = validateRange
+        const { userNameRange, commentTextRange } = validateRange;
         
         // прописываем классы с помощью библиотеки classnames
         const userNameLabel = cn({
@@ -92,3 +97,6 @@ const validateRange = {
         max: 30
     }
 }
+
+// прокидываю в this.props addComment
+export default connect(null, { addComment })(FormCommentAdd);

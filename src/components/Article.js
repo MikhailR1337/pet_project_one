@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CommentList } from './CommentList';
 import PropTypes from 'prop-types';
-import { FormCommentAdd } from './forms/FormCommentAdd';
+import FormCommentAdd from './forms/FormCommentAdd';
 import { CSSTransition } from 'react-transition-group';
 import { deleteArticle } from '../redux/actionCreaters/actionCreaters';
 
@@ -52,7 +52,7 @@ class Article extends Component {
                     <div className={this.toggleCollapsibleBody}>
                         <p>{article.text}</p>
                         <CommentList isOpen={isOpen} comments={article.comments} />
-                        {isOpen && <FormCommentAdd />}
+                        {isOpen && <FormCommentAdd articleId={article.id} />}
                         <div className="right-align">
                             <i className="material-icons medium red-text" onClick={this.deleteHandler}>delete</i>
                         </div>
@@ -63,4 +63,5 @@ class Article extends Component {
     }
 };
 
+// прокидываю в this.props deleteArticle
 export default connect(null, { deleteArticle })(Article);

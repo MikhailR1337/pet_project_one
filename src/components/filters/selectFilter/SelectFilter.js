@@ -34,10 +34,12 @@ class SelectFilter extends Component {
     }
 };
 
+// достаем нужные нам части из redux
 const mapStateToProps = (state) => ({
     selected: state.filters.selected,
     articles: mapToArr(state.articles)
     
 });
 
+// прокидываем в props selectChanged
 export default connect(mapStateToProps, { selectChanged })(SelectFilter);

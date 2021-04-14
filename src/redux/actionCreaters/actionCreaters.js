@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE, SELECT_CHANGED, DAYPICKER_CHANGED } from '../types';
+import { DELETE_ARTICLE, SELECT_CHANGED, DAYPICKER_CHANGED, ADD_COMMENT } from '../types';
 
 export const deleteArticle = (id) => {
     return { 
@@ -18,6 +18,14 @@ export const daypickerChanged = (dateRange) => {
     return { 
         type: DAYPICKER_CHANGED, 
         payload: { dateRange } 
+    };
+}
+
+export const addComment = (comment, articleId) => {
+    return { 
+        type: ADD_COMMENT, 
+        payload: { comment, articleId },
+        generateId: true
     };
 }
 

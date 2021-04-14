@@ -61,8 +61,9 @@ class DayPickerFilter extends React.Component {
   }
 };
 
+// достаем нужные нам части из redux
 const mapStateToProps = (state) => ({
   dateRange: state.filters.dateRange
 })
-
+// прокидываем в props daypickerChanged
 export default connect(mapStateToProps, { daypickerChanged })(DayPickerFilter);
