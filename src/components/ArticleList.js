@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Article from './Article';
 import { accordionDecorator } from '../decorators/accordion';
+import { articleFilteredSelector } from '../redux/selectors/selectors';
 
 
 const ArticleList = ({ isOpenId, isOpenHandler, articles }) => {
@@ -34,15 +35,10 @@ ArticleList.propTypes = {
 
 
 // Фильтруем статьи до их рендера (работает, но есть над чем подумать)
-export default connect(({ articles, filters }) => {
-    const { selected, dateRange: { from, to } } = filters;
-    const filteredArticles = articles.filter(article => {
-        const published = Date.parse(article.date);
-        return (!selected.length || selected.filter(elem => elem.value === article.id).length === 1) &&
-            (!from || !to || (published > from && published < to))
-    })
+export default connect((state) => {
+    
     return {
-        articles: filteredArticles
+        articles: articleFilteredSelector(state)
     }
 
 })(accordionDecorator(ArticleList));
