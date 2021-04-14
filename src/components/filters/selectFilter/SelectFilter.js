@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { selectChanged } from '../../../redux/actionCreaters/actionCreaters';
+import { mapToArr } from '../../../redux/helpers';
 
 const animatedComponents = makeAnimated()
 class SelectFilter extends Component {
@@ -35,7 +36,7 @@ class SelectFilter extends Component {
 
 const mapStateToProps = (state) => ({
     selected: state.filters.selected,
-    articles: state.articles
+    articles: mapToArr(state.articles)
     
 });
 

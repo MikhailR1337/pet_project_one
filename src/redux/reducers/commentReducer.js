@@ -1,10 +1,13 @@
-import { normalizedComments } from '../../fixtures';
+import { normalizedComments as initialState } from '../../fixtures';
+import { ADD_COMMENT } from '../types';
+import { arrToMap } from '../helpers';
 
-const initialState = normalizedComments.reduce((acc, comment) => {
-    acc[comment.id] = comment;
-    return acc;
-}, {});
+export const commentReducer = (state = arrToMap(initialState), action) => {
+    const { type, payload, randomId } = action;
+    switch (type) {
+        case ADD_COMMENT:
+            return { ...state, [randomId]: payload.comment };
 
-export const commentReducer = (state = initialState, action) => {
-    return state;
+        default: return state;
+    } 
 }
