@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Comment } from './Comment';
+import Comment from './Comment';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
@@ -44,7 +44,7 @@ export const CommentList = ({ comments = [], isOpen }) => {
                     {getButton()}
                     <CSSTransition in={isOpenComment} timeout={500} classNames="comment">
                     <ul className="collection">
-                        {isOpenComment && comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
+                        {isOpenComment && comments.map((id) => <Comment id={id} key={id} />)}
                     </ul>
                     </CSSTransition>
                 </>

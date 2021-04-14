@@ -34,7 +34,7 @@ ArticleList.propTypes = {
 
 
 
-// Фильтруем статьи до их рендера (работает, но есть над чем подумать)
+// Фильтруем статьи до их рендера
 export default connect((state) => {
     
     return {
@@ -42,22 +42,3 @@ export default connect((state) => {
     }
 
 })(accordionDecorator(ArticleList));
-
-// Вариант через фильтрации mapStateToProps. По синтаксису что-то не пошло, надо думать.
-
-/* const mapStateToProps = (state) => ({
-    articles: state.articles,
-    filters: state.filters
-});
-
-export default connect(mapStateToProps => {
-    const { selected, dateRange: { from, to } } = mapStateToProps.filters;
-    const filteredArticles = mapStateToProps.articles.filter(article => {
-        const published = Date.parse(article.date);
-        return (!selected.length || selected.filter(elem => elem.value === article.id).length === 1) &&
-            (!from || !to || (published > from && published < to))
-    })
-    return {
-        articles: filteredArticles
-    }
-})(accordionDecorator(ArticleList)); */

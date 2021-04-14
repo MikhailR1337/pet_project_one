@@ -1,4 +1,4 @@
-import { articles as initialState } from '../../fixtures';
+import { normalizedArticles as initialState } from '../../fixtures';
 import { DELETE_ARTICLE } from '../types';
 
 export const articleReducer = (state = initialState, action) => {
