@@ -28,6 +28,7 @@ class SelectFilter extends Component {
                 value={selected}
                 components={animatedComponents}
                 isMulti
+                placeholder="Выбрать..."
                 />
             </>
         );

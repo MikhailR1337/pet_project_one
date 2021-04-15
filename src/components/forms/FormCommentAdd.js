@@ -44,11 +44,17 @@ class FormCommentAdd extends Component {
         });
         const userNameInput = cn("validate", {
             "valid": userNameText.length >= userNameRange.min,
-            "invalid": userNameText.length >= userNameRange.max
+            "invalid": userNameText.length > userNameRange.max
         });
         const commentTextInput = cn("materialize-textarea",{
             "valid": commentText.length >= commentTextRange.min,
-            "invalid": commentText.length >= commentTextRange.max
+            "invalid": commentText.length > commentTextRange.max
+        });
+
+        const submitButton = cn("btn waves-effect waves-light mt-1",{
+            "disabled": 
+            (commentText.length < commentTextRange.min || commentText.length > commentTextRange.max) ||
+            (userNameText.length < userNameRange.min || userNameText.length > userNameRange.max)
         });
 
         return (
@@ -75,7 +81,7 @@ class FormCommentAdd extends Component {
                             <label htmlFor="comment" className={commentTextLabel}>Введите комментарий</label>
                         </div>
                         <div className="input-field col s3 center-align">
-                            <button className="btn waves-effect waves-light mt-1" type="submit" name="action">добавить
+                            <button className={submitButton} type="submit" name="action">добавить
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
