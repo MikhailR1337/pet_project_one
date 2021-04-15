@@ -1,9 +1,9 @@
 import { DELETE_ARTICLE, SELECT_CHANGED, DAYPICKER_CHANGED, ADD_COMMENT } from '../types';
 
-export const deleteArticle = (id) => {
+export const deleteArticle = (id, comments) => {
     return { 
         type: DELETE_ARTICLE, 
-        payload: { id } 
+        payload: { id, comments } 
     };
 }
 

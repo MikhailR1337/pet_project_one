@@ -29,7 +29,7 @@ class Article extends Component {
 
     deleteHandler = () => {
         const { article, deleteArticle } = this.props;
-        deleteArticle(article.id);
+        deleteArticle(article.id, article.comments);
     }
 
     render() {
