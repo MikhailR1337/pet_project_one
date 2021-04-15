@@ -27,7 +27,7 @@
   "scripts": {
     "start": "concurrently \"npm run dev\" \"npm run api\"",
     "dev": "react-scripts start",
-    "api": " node simple_api/server.js",
+    "api": " nodemon simple_api/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

@@ -1,12 +1,10 @@
-var path = require('path');
 var express = require('express');
 var api = require('./api');
-var bodyParser = require('body-parser');
 var port = 5000;
-
 var app = express();
 
-app.use(bodyParser.json());
+app.use(express.json({ extended: true }));
+
 app.use('/api', api)
 
 app.listen(port, 'localhost', function (err) {
